@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag 'users', :media => "all" %>
+
+<h1>マイページ</h1>
+
+<div class="field">
+  <p>名前 : <%= @user.name %></p>
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>プロフィール : <%= @user.profile %></p>
+</div>
+
+<% if current_user.id == @user.id %>
+<div class="field">
+  <%= link_to "編集する", edit_user_registration_path %>
+</div> 
+<% end %>
+
+<h2>ユーザーの投稿一覧</h2>
+<% @user.posts.each do |t| %>
+  <div class="post">
+  <div class="image">
+  <%= t.user.email %>
+     <%= image_tag t.image_url, size: "280x210" if t.image? %>
+  </div> 
+  <%= t.category %>
+  <%= t.place %>
+  <%= t.create_date %>
+  <%= t.comment %>
+  <% t.tags.each do |tag| %>
+  <%= link_to "詳細へ", post_path(t.id) %>  
+     <span><%= tag.name %></span>
+  <% end %>
+
+   <% if user_signed_in? && current_user.id == t.user_id %>
+   <%= link_to "編集する", edit_post_path(t.id) %>
+   <%= button_to "削除する", post_path(t.id), method: :delete %> 
+   <% end %> 
+
+   <% if user_signed_in? %>
+       <% if current_user.already_liked?(t) %>
+          <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+             <i class="fas fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% else %>
+         <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+         <% end %>
+      <% end %>
+  <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
+  <% end %>
+
+<div class="field">
+  <%= t.user.name %>
+  <%= t.place %>
+</div>
+<% end %>
+
+<div class="field">
+  <%= link_to "投稿一覧に戻る", posts_path %>
+</div>

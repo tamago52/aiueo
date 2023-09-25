@@ -1,0 +1,27 @@
+<h1>散歩</h1>
+<h3>新規投稿</h3>
+<%= form_for @post do |f| %>
+
+    <%= stylesheet_link_tag 'new', :media => "all" %>
+
+    <div class="field">
+      <%= f.label :画像 %><br />
+      <%= f.file_field :image, class: "image" %>
+    </div>
+
+    # データ型がstringで自由記述の入力フォーム
+    <div class="field">
+      <%= f.label :場所 %>
+      <%= f.text_field :place, :size => 30 %>
+    </div>
+
+    # データ型がtextで自由記述の入力フォーム
+    <div class="field">
+      <%= f.label :コメント %>
+      <%= f.text_area :comment, :size => "30x2" %>
+    </div>
+
+    <%= f.submit "投稿する" %>
+  <% end %>
+
+  <%= link_to "一覧に戻る", posts_path %>

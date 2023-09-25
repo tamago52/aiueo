@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>犬</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/top.scss">
+  </head>
+
+  <body>
+  <h1>あ</h1>
+  <h3>一覧ページ</h3>
+    <%= link_to "新規投稿へ", new_post_path %>
+    <%= link_to "投稿一覧へ", posts_path %>
+    <%= link_to "お店", posts_store_path %>
+    <%= link_to "ごはん", posts_food_path %>
+    <%= link_to "動物", posts_animal_path %>
+  <div class="posts-container">
+  
+  <% if user_signed_in? %>
+    <%= link_to "マイページへ", user_path(current_user.id) %>
+  <% end %>
+
+  </body>
+
+  </html>

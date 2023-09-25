@@ -1,0 +1,21 @@
+.posts-container {
+    width: 100%;
+    margin: 10px auto;
+    display:flex;
+  }
+  h3 {
+    width: 100px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  .post {
+    margin-top: 10px;
+    padding-top: 20px;
+    width: 33%;
+  }
+
+  .aaaaa{
+    height:50px;
+  }
+
+

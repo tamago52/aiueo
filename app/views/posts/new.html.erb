@@ -1,0 +1,78 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<h2>新規投稿</h2>
+<%= form_for @post do |f| %>
+
+  <div class="form-group">
+    <%= f.label :content,"ジャンル" %>
+    <%= f.select :category, [["お店", "store"], ["ごはん", "food"], ["動物", "animal"]], include_blank: "どの投稿？" %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :どこ %>
+    <%= f.text_field :place, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :写真 %><br>
+    <%= f.file_field :image, class: "image" %>
+  </div>
+  <div id="image-list"></div>
+
+  <div class="form-group">
+    <%= f.label :いつ, class: 'control-label' %>
+    <p><%= f.date_select :create_date, class: 'form-control' %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :コメント  %>
+    <%= f.text_area :comment, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "投稿する" %>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= link_to "一覧に戻る", posts_path %>
+</div>
+
+<script>
+// プレビュー表示機能は新規投稿("/new/")か投稿編集("/edit/")ページでのみ有効にする
+if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
+  document.addEventListener('DOMContentLoaded', function(){
+    // プレビューを表示するための要素を取得
+    const ImageList = document.getElementById('image-list');
+
+    const createImageHTML = (blob) => {
+      // 画像を表示するためのdiv要素を生成
+      const imageElement = document.createElement('div');
+      // 表示する画像を生成
+      const blobImage = document.createElement('img');
+      // img要素のsrc属性の値をセット
+      blobImage.setAttribute('src', blob);
+
+      // 生成したHTMLの要素をブラウザに表示させる
+      imageElement.appendChild(blobImage);
+      ImageList.appendChild(imageElement);
+    };
+
+    document.getElementById('post_image').addEventListener('change', function(e){
+      // 画像が表示されている場合のみ、すでに存在している画像を削除する（編集ページ用）
+      const imageContent = document.querySelector('img');
+      if (imageContent){
+        imageContent.remove();
+      }
+
+      // 発火したイベントeの中の、targetの中の、filesという配列に格納された画像を変数に代入
+      const file = e.target.files[0];
+      // 画像のURLを生成
+      const blob = window.URL.createObjectURL(file);
+
+      createImageHTML(blob);
+    });
+  });
+}
+
+</script>

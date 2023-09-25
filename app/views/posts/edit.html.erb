@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :content,"ジャンル" %>
+    <%= f.select :category, [["お店", "store"], ["ごはん", "food"], ["動物", "animal"]], include_blank: "どの投稿？" %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :どこ %>
+    <%= f.text_field :place, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :写真 %><br>
+    <%= f.file_field :image, class: "image" %>
+  </div>
+  <div id="image-list"></div>
+
+  <div class="form-group">
+    <%= f.label :いつ, class: 'control-label' %>
+    <p><%= f.date_select :create_date, class: 'form-control' %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :コメント  %>
+    <%= f.text_area :comment, :size => "30x2" %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "編集する" %>
+  </div>
+
+  <div class="field">
+    <%= link_to "一覧に戻る", posts_path %>
+  </div>
+<% end %>

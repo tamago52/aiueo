@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aiueo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/5d76b9a411.js"  crossorigin="anonymous"></script> 
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500&family=Zen+Kaku+Gothic+New&family=Zen+Maru+Gothic:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+  </head>
+
+<body>
+ <header>
+  <h1>犬</h1>
+  <div class="header-list">
+   <ul>
+    <% if user_signed_in? %>
+     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+     <li><%= link_to "トップページへ", root_path %></li>
+     <li><%= link_to "新規投稿へ", new_post_path %></li>
+    <% else %>
+     <li><%= link_to "新規登録", new_user_registration_path %></li>
+     <li><%= link_to "ログイン", new_user_session_path %></li>
+    <% end %>
+   </ul>
+  </div>
+ </header>
+ <main>
+  <%= yield %>
+ </main>
+</body>
+
+</html>
