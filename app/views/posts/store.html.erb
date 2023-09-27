@@ -1,13 +1,12 @@
+<link rel="stylesheet" type="text/css" href="index.css">
+
 <h1>お店</h1>
 
+<div class="posts-container">
 <% @posts.each do |t| %>
   <% if t.category == "store" %>  
-    <% if user_signed_in? && current_user.id == t.user_id %>
-      <%= link_to "編集する", edit_post_path(t.id) %>
-      <%= button_to "削除する", post_path(t.id), method: :delete %> 
-    <% end %> 
 
-    <div class="post">
+     <div class="post">
      <div class="image">
        <%= t.user.email %>
        <%= image_tag t.image_url, size: "280x210" if t.image? %>
@@ -19,7 +18,13 @@
      <% t.tags.each do |tag| %>
        <span><%= tag.name %></span>
      <% end %>
-    </div>
+
+     <% if user_signed_in? && current_user.id == t.user_id %>
+     <%= link_to "編集する", edit_post_path(t.id) %>
+     <%= button_to "削除する", post_path(t.id), method: :delete %> 
+    <% end %> 
+
+    <p><%= link_to "詳細へ", post_path(t.id) %> 
 
     <% if user_signed_in? %>
         <% if current_user.already_liked?(t) %>
@@ -34,8 +39,9 @@
     <% else %>
       <i class="far fa-heart"></i><%= t.likes.count %>
     <% end %>
-    <p><%= link_to "詳細へ", post_path(t.id) %> 
-    
+
+    </div>
+
   <% end %>
 
 <% end %>

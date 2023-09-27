@@ -1,10 +1,7 @@
 .posts-container {
     width: 100%;
-    margin: 40px auto;
+    margin: 10px auto;
     display:flex;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
   }
   h3 {
     width: 100px;
@@ -20,5 +17,3 @@
   .aaaaa{
     height:50px;
   }
-
-

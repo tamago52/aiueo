@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
-<h1>散歩</h1>
 <h3>一覧ページ</h3>
 
   <%= link_to "新規投稿へ", new_post_path %>
@@ -16,16 +15,13 @@
   <% @posts.each do |t| %>
    <div class="post">
    <div class="image">
-   <%= t.user.email %>
-      <%= image_tag t.image_url, size: "280x210" if t.image? %>
+   <%= image_tag t.image_url, size: "280x210" if t.image? %>
    </div> 
-   <%= t.category %>
-   <%= t.place %>
-   <%= t.create_date %>
-   <%= t.comment %>
-   <% t.tags.each do |tag| %> 
-      <span><%= tag.name %></span>
-   <% end %>
+   <h4>〈ユーザー名〉</h4><%= t.user.email %>
+   <h4>〈カテゴリー〉</h4><%= t.category %>
+   <h4>〈場所〉</h4><%= t.place %>
+   <h4>〈作成日〉</h4><%= t.create_date %>
+   <h4>〈コメント〉</h4><%= t.comment %>
 
    <p><%= link_to "詳細へ", post_path(t.id) %> 
 
@@ -49,8 +45,7 @@
    <% end %>
 
    </div>
-
- <% end %>
+   <% end %>
 
 </div>
 

@@ -19,12 +19,26 @@
     margin: 10px;
     text-align: center;
   }
-
  input[type="submit"] {
     width: 60px;
     font-size: 10px;
     margin-top: 50px;
     margin-bottom: 30px;
+  }
+  .posts-container {
+    width: 100%;
+    margin: 10px auto;
+    display:flex;
+  }
+  .post {
+    margin-top: 10px;
+    padding-top: 20px;
+    width: 33%;
+  }
+  h3 {
+    width: 100px;
+    margin: 30px auto;
+    text-align: center;
   }
 
 

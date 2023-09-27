@@ -2,13 +2,31 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>犬</title>
+    <title>散歩</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/top.scss">
   </head>
 
   <body>
-  <h1>あ</h1>
-  <h3>一覧ページ</h3>
+  <%= image_tag 'IMG_9094.JPG', size: '1440x700' %>
+
+  <div class="flex">
+
+  <div class="right">
+    <p class="title">このサイトに関して</p>
+    <p class="text">皆さん、お気に入りの場所はありませんか？このサイトでは、地図には載っていない場所、載っているけれど注目を浴びていない部分に焦点を当てたサイトです。</p>
+  </div>
+  <%= image_tag '7F27039C-A7D3-4272-B3B4-97BAB3B69A5A.png', size: '500x500' , class: 'hoge1' %>
+</div>
+
+  <div class="flex">
+  <%= image_tag '43A6F14F-280A-470A-A109-985A1570C72F.png', size: '500x500' , class: 'hoge2' %>
+  <div class="left">
+    <p class="title">利用に関して</p>
+    <p class="text">皆さんのおすすめの場所を、文章や写真を使ってぜひ投稿してみてください。</p>
+  </div>
+</div>
+
+  <h3>他のページ</h3>
     <%= link_to "新規投稿へ", new_post_path %>
     <%= link_to "投稿一覧へ", posts_path %>
     <%= link_to "お店", posts_store_path %>
